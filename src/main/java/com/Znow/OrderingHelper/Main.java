@@ -22,6 +22,7 @@ public class Main extends Application {
 
         mController = new Controller();
         mController.startMainWin(primaryStage);
+        mController.goodInit();
     }
 
     public DBConnector getConnector() {

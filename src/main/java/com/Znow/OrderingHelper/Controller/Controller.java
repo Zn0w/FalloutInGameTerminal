@@ -52,6 +52,10 @@ public class Controller {
         cView = new View();
     }
 
+    public void goodInit() {
+        cModel.loadGoods();
+    }
+
     public void startMainWin(Stage mainStage) {
         cView.drawMainView(mainStage);
     }
@@ -154,7 +158,6 @@ public class Controller {
             Good good = goods.get(i);
             Button but = new Button(good.getName() + "($" + good.getPrice() + ")");
             itemsList.getChildren().add(but);
-            System.out.println(good.getName() + "($" + good.getPrice() + ")");
         }
 
         mainPane.getChildren().addAll(scrollItemsList, options);
