@@ -12,10 +12,8 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -42,7 +40,12 @@ public class Controller {
     @FXML
     private HBox optionsPane;
 
+    @FXML
+    private HBox pricePane;
+
     private Order currentOrder;
+
+    private Label lblPrice;
 
     private ScrollPane scrollItemsList;
     private VBox itemsList;
@@ -82,7 +85,29 @@ public class Controller {
                 }
             });
 
-            optionsPane.getChildren().add(butAddItem);
+            Button butApplyOrder = new Button("Apply order");
+            butApplyOrder.setOnAction(new EventHandler<ActionEvent>() {
+
+                @Override
+                public void handle(ActionEvent event) {
+                    applyOrder();
+                }
+            });
+
+            Button butCancelOrder = new Button("Cancel order");
+            butCancelOrder.setOnAction(new EventHandler<ActionEvent>() {
+
+                @Override
+                public void handle(ActionEvent event) {
+                    cancelOrder();
+                }
+            });
+
+            optionsPane.getChildren().addAll(butAddItem, butApplyOrder, butCancelOrder);
+
+            lblPrice = new Label("Total price:   $" + currentOrder.getTotalPrice());
+
+            pricePane.getChildren().add(lblPrice);
         }
         else {
             Stage stage = new Stage();
@@ -144,7 +169,7 @@ public class Controller {
 
         HBox options = new HBox();
 
-        Button button = new Button("Cancel");
+        Button button = new Button("Done");
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -157,6 +182,12 @@ public class Controller {
         for (int i = 0; i < goods.size(); i++) {
             Good good = goods.get(i);
             Button but = new Button(good.getName() + "($" + good.getPrice() + ")");
+            but.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    selectGood(good);
+                }
+            });
             itemsList.getChildren().add(but);
         }
 
@@ -164,6 +195,55 @@ public class Controller {
 
         Scene selectScene = new Scene(mainPane, 200, 300);
         stage.setScene(selectScene);
+        stage.show();
+    }
+
+    public void selectGood(Good good) {
+        Stage stage = new Stage();
+        stage.setTitle(good.getName() + " - $" + good.getPrice());
+
+        VBox mainPane = new VBox();
+
+        HBox enterPane = new HBox();
+
+        Label lbl = new Label("Enter amount: ");
+        TextField txt = new TextField();
+
+        enterPane.getChildren().addAll(lbl, txt);
+
+        HBox buttonsPane = new HBox();
+
+        Button acceptBut = new Button("OK");
+        acceptBut.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                int amount = Integer.parseInt(txt.getText());
+                currentOrder.addGood(good, amount);
+
+                Button goodBut = new Button(good.getName() + "  $" + good.getPrice() + "  x" + amount);
+
+                // Updating orderedItems and price
+                itemsPane.getChildren().add(goodBut);
+                lblPrice.setText("Total price:   $" + currentOrder.getTotalPrice());
+
+                stage.close();
+            }
+        });
+        Button cancelBut = new Button("Cancel");
+        cancelBut.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                stage.close();
+            }
+        });
+
+        buttonsPane.getChildren().addAll(acceptBut, cancelBut);
+
+        mainPane.getChildren().addAll(enterPane, buttonsPane);
+
+        Scene contentScene = new Scene(mainPane);
+
+        stage.setScene(contentScene);
         stage.show();
     }
 }
