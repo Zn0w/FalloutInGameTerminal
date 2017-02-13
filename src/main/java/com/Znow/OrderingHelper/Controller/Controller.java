@@ -76,6 +76,8 @@ public class Controller {
         }
 
         if (currentOrder.isRecentlyCreated()) {
+            itemsPane.getChildren().clear();
+
             Button butAddItem = new Button("Add item");
             butAddItem.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -134,11 +136,23 @@ public class Controller {
         currentOrder.setRecentlyCreated(false);
     }
 
+    @FXML
+    public void showGuide() {
+        Label lblInfo = new Label("Welcome to the OrderingHelper!\nNow you can make an order!\n(Some information will be here)");
+
+        itemsPane.getChildren().add(lblInfo);
+    }
+
     /**
      * Call when the order is completed
      */
     public void applyOrder() {
+        currentOrder.accept();
 
+        currentOrder = null;
+        optionsPane.getChildren().clear();
+        pricePane.getChildren().clear();
+        itemsPane.getChildren().clear();
     }
 
     /**
@@ -146,6 +160,12 @@ public class Controller {
      */
     public void cancelOrder() {
 
+        currentOrder.cancel();
+
+        currentOrder = null;
+        optionsPane.getChildren().clear();
+        pricePane.getChildren().clear();
+        itemsPane.getChildren().clear();
     }
 
     /**
