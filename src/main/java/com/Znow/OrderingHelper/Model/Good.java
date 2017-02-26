@@ -9,6 +9,16 @@ public class Good {
     private double price;
     private int discount, id;
 
+    private int orderedAmount;
+
+    public int getOrderedAmount() {
+        return orderedAmount;
+    }
+
+    public void setOrderedAmount(int orderedAmount) {
+        this.orderedAmount = orderedAmount;
+    }
+
     public String getName() {
         return name;
     }

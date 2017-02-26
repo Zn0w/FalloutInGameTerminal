@@ -13,12 +13,17 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
 
 import static com.Znow.OrderingHelper.Model.Model.goods;
@@ -67,7 +72,7 @@ public class Controller {
         return cView;
     }
 
-    // Action handling
+    // Action handling for cashier mode
 
     @FXML
     public void createNewOrder() {
@@ -147,12 +152,36 @@ public class Controller {
      * Call when the order is completed
      */
     public void applyOrder() {
-        currentOrder.accept();
-
-        currentOrder = null;
         optionsPane.getChildren().clear();
         pricePane.getChildren().clear();
         itemsPane.getChildren().clear();
+
+        // Getting contact data
+        Stage stage = new Stage();
+
+        VBox root = new VBox();
+
+        TextField txtName = new TextField("Put here your name");
+        TextField txtMail = new TextField("Put here your e-mail");
+
+        Button okayBut = new Button("OK");
+        okayBut.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                currentOrder.accept(txtName.getText(), txtMail.getText());
+                currentOrder = null;
+
+                stage.close();
+            }
+        });
+
+        root.getChildren().addAll(txtName, txtMail, okayBut);
+
+        Scene scene = new Scene(root, 150, 300);
+
+        stage.setScene(scene);
+        stage.setTitle("Contact Information");
+        stage.show();
     }
 
     /**
@@ -166,13 +195,6 @@ public class Controller {
         optionsPane.getChildren().clear();
         pricePane.getChildren().clear();
         itemsPane.getChildren().clear();
-    }
-
-    /**
-     * Call when user chooses item to add in order
-     */
-    public void addGoodInOrder() {
-
     }
 
     /**
@@ -238,9 +260,16 @@ public class Controller {
             @Override
             public void handle(ActionEvent event) {
                 int amount = Integer.parseInt(txt.getText());
+                good.setOrderedAmount(amount);
                 currentOrder.addGood(good, amount);
 
                 Button goodBut = new Button(good.getName() + "  $" + good.getPrice() + "  x" + amount);
+                goodBut.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        selectOrderedGood(good, goodBut);
+                    }
+                });
 
                 // Updating orderedItems and price
                 itemsPane.getChildren().add(goodBut);
@@ -266,4 +295,55 @@ public class Controller {
         stage.setScene(contentScene);
         stage.show();
     }
+
+    public void selectOrderedGood(Good good, Button goodButton) {
+        Stage stage = new Stage();
+
+        VBox root = new VBox();
+
+        Label qLbl = new Label("Another amount?");
+        TextField aSet = new TextField();
+        HBox optPanel = new HBox();
+
+        Button setAmount = new Button("Set new amount");
+        setAmount.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                int amount = Integer.parseInt(aSet.getText());
+                currentOrder.updateAmount(good, amount);
+
+                // Updating orderedItems and price
+                goodButton.setText(good.getName() + "  $" + good.getPrice() + "  x" + amount);
+                lblPrice.setText("Total price:   $" + currentOrder.getTotalPrice());
+
+                stage.close();
+            }
+        });
+
+        Button removeGood = new Button("Remove good from the order");
+        removeGood.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                currentOrder.removeGood(good);
+
+                // Updating orderedItems and price
+                itemsPane.getChildren().remove(goodButton);
+                lblPrice.setText("Total price:   $" + currentOrder.getTotalPrice());
+
+                stage.close();
+            }
+        });
+
+        optPanel.getChildren().addAll(setAmount, removeGood);
+
+        root.getChildren().addAll(qLbl, aSet, optPanel);
+
+        Scene scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.setTitle("Good change");
+        stage.show();
+    }
+
+    // Action handling for admin mode
 }
