@@ -37,20 +37,34 @@ public class Model {
         }
     }
 
-    public void saveNewGood(String name, String price) {
-                        
-    }
-
-    public void deleteGood(String name) {
+    public void saveNewGood(Good good, String price) {
 
     }
 
-    public void updateGood(String name, String newName) {
+    public void deleteGood(Good good) {
 
     }
 
-    public void updateGood(String name, int newPrice) {
+    public void updateGood(Good good, String newName) {
+        String oldName = good.getName();
 
+        try {
+            Statement statement = connector.getConnection().createStatement();
+            statement.executeUpdate("UPDATE goods_info SET item_name = '"+newName+"' WHERE item_name = '"+oldName+"';");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateGood(Good good, int newPrice) {
+        String name = good.getName();
+
+        try {
+            Statement statement = connector.getConnection().createStatement();
+            statement.executeUpdate("UPDATE goods_info SET item_price = '"+newPrice+"' WHERE item_name = '"+name+"';");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }
