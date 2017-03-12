@@ -1,5 +1,6 @@
 package com.Znow.OrderingHelper.Controller;
 
+import com.Znow.OrderingHelper.Model.ActiveOrder;
 import com.Znow.OrderingHelper.Model.Good;
 import com.Znow.OrderingHelper.Model.Model;
 import com.Znow.OrderingHelper.Order;
@@ -27,6 +28,7 @@ import java.awt.*;
 import java.io.IOException;
 
 import static com.Znow.OrderingHelper.Model.Model.goods;
+import static com.Znow.OrderingHelper.Model.Model.orders;
 
 /**
  * Created by User on 28.01.2017.
@@ -60,16 +62,17 @@ public class Controller {
         cView = new View();
     }
 
-    public void goodInit() {
+    public void init() {
         cModel.loadGoods();
+        cModel.loadActiveOrders();
     }
 
     public void startMainWin(Stage mainStage) {
-        cView.drawMainView(mainStage);
+        cView.drawClientView(mainStage);
     }
 
-    public View getView() {
-        return cView;
+    public void startAdminWin() {
+        cView.drawSellerView();
     }
 
     // Action handling for cashier mode
@@ -345,5 +348,215 @@ public class Controller {
         stage.show();
     }
 
-    // Action handling for admin mode
+    @FXML
+    public void openSellerMode() {
+        startAdminWin();
+    }
+
+    // Action handling for seller mode
+
+    public void openGoodManager() {
+        Stage stage = new Stage();
+
+        VBox root = new VBox();
+        ScrollPane goodListScroll = new ScrollPane();
+
+        VBox goodListPane = new VBox();
+        goodListScroll.setContent(goodListPane);
+
+        StackPane butPane = new StackPane();
+
+        for (int i = 0; i < Model.goods.size(); i++) {
+            Good good = goods.get(i);
+
+            Button goodBut = new Button(good.getName() + "   $" + good.getPrice());
+            goodBut.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    goodSelected(good);
+                }
+            });
+
+            goodListPane.getChildren().add(goodBut);
+        }
+
+        Button okBut = new Button("OK");
+        okBut.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                stage.close();
+            }
+        });
+
+        butPane.getChildren().add(okBut);
+        root.getChildren().addAll(goodListScroll, butPane);
+
+        Scene scene = new Scene(root, 300 ,300);
+
+        stage.setScene(scene);
+        stage.setTitle("Good Manager");
+
+        stage.show();
+    }
+
+    public void goodSelected(Good good) {
+        Stage goodStage = new Stage();
+
+        VBox root = new VBox();
+
+        Label lblName = new Label("Name: " + good.getName());
+        Label lblPrice = new Label("Price: $" + good.getPrice());
+
+        TextField txtSetName = new TextField("Put here new name if you want to change the name");
+        TextField txtSetPrice = new TextField("Put here new price if you want to change the name");
+
+        HBox optionsPane = new HBox();
+
+        Button updateBut = new Button("Update information");
+        updateBut.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (txtSetName.getText() != "Put here new name if you want to change the name" || txtSetName.getText() != null)
+                    cModel.updateGood(good, txtSetName.getText());
+
+                if (txtSetPrice.getText() != "Put here new price if you want to change the name" || txtSetPrice.getText() != null)
+                    cModel.updateGood(good, Integer.parseInt(txtSetPrice.getText()));
+            }
+        });
+
+        Button removeBut = new Button("Remove good");
+        removeBut.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                cModel.deleteGood(good);
+            }
+        });
+
+        optionsPane.getChildren().addAll(updateBut, removeBut);
+        root.getChildren().addAll(lblName, lblPrice, txtSetName, txtSetPrice, optionsPane);
+
+        Scene contentScene = new Scene(root, 250, 400);
+
+        goodStage.setScene(contentScene);
+        goodStage.setTitle("Good information");
+
+        goodStage.show();
+    }
+
+    public void openActiveOrdersMenu() {
+        Stage stage = new Stage();
+
+        VBox root = new VBox();
+        ScrollPane ordScroll = new ScrollPane();
+
+        VBox ordList = new VBox();
+        ordScroll.setContent(ordList);
+
+        for (int i = 0; i < Model.orders.size(); i++) {
+            ActiveOrder order = orders.get(i);
+
+            Button butOrd = new Button(order.getCustName() + "|" + order.getOrderContent()) ;
+            butOrd.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    opentActiveOrderWindow(order);
+                    stage.close();
+                }
+            });
+
+            ordList.getChildren().add(butOrd);
+        }
+
+        Button butOk = new Button("OK");
+        butOk.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                stage.close();
+            }
+        });
+
+        root.getChildren().addAll(ordList, butOk);
+
+        Scene scene = new Scene(root);
+
+        stage.setTitle("Active Orders");
+        stage.setScene(scene);
+
+        stage.show();
+    }
+
+    public void opentActiveOrderWindow(ActiveOrder order) {
+        Stage stage = new Stage();
+
+        VBox root = new VBox();
+
+        Label name = new Label("Customer name: " + order.getCustName());
+        Label mail = new Label("Customer mail: " + order.getCustMail());
+        Label content = new Label("Order content: " + order.getOrderContent());
+
+        HBox options = new HBox();
+
+        Button butDone = new Button("Done");
+        butDone.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                saveInHistory("done");
+                stage.close();
+            }
+        });
+
+        Button butCancel = new Button("Cancel Order");
+        butCancel.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                saveInHistory("cancelled");
+                stage.close();
+            }
+        });
+
+        Button butClose = new Button("Close");
+        butClose.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                stage.close();
+            }
+        });
+
+        options.getChildren().addAll(butDone, butCancel, butClose);
+
+        root.getChildren().addAll(name, mail, content, options);
+
+        Scene scene = new Scene(root);
+
+        stage.setTitle("Order Description");
+        stage.setScene(scene);
+
+        stage.show();
+    }
+
+    // History
+    public void saveInHistory(String status) {
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -18,6 +18,7 @@ import static com.Znow.OrderingHelper.Main.connector;
 public class Model {
 
     public static ArrayList<Good> goods = new ArrayList<Good>();
+    public static ArrayList<ActiveOrder> orders = new ArrayList<ActiveOrder>();
 
     // Initialize goods from database
     public void loadGoods() {
@@ -31,6 +32,25 @@ public class Model {
                 good.setId(rs.getInt(1));
                 good.setName(rs.getString(2));
                 good.setPrice(rs.getDouble(3));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadActiveOrders() {
+        try {
+            Statement statement = connector.getConnection().createStatement();
+            ResultSet rs = statement.executeQuery("select * from active_orders");
+
+            while (rs.next()) {
+                ActiveOrder activeOrder = new ActiveOrder();
+                orders.add(activeOrder);
+                activeOrder.setId(rs.getInt(1));
+                activeOrder.setCustName(rs.getString(2));
+                activeOrder.setCustMail(rs.getString(3));
+                activeOrder.setOrderContent(rs.getString(4));
+                activeOrder.setPrice(rs.getDouble(5));
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -8,7 +8,7 @@
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.Znow.OrderingHelper.Controller.Controller">
   <children>
     <Button fx:id="butNewOrder" layoutX="171.0" layoutY="14.0" mnemonicParsing="false" onAction="#createNewOrder" text="New Order" />
-    <Button id="butEditMode" fx:id="butGoAdminMode" layoutX="264.0" layoutY="14.0" mnemonicParsing="false" text="Admin Mode" />
+    <Button id="butEditMode" fx:id="butGoAdminMode" layoutX="264.0" layoutY="14.0" mnemonicParsing="false" onAction="#openSellerMode" text="Admin Mode" />
     <Button fx:id="butHelp" layoutX="371.0" layoutY="14.0" mnemonicParsing="false" onAction="#showGuide" text="Help" />
     <BorderPane fx:id="orderingPane" layoutX="171.0" layoutY="53.0" prefHeight="333.0" prefWidth="259.0">
       <bottom>

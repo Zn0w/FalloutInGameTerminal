@@ -14,7 +14,7 @@ public class View {
 
     //private Stage mainStage;
 
-    public void drawMainView(Stage stage) {
+    public void drawClientView(Stage stage) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/cashierModeView.fxml"));
 
@@ -28,5 +28,27 @@ public class View {
         }
 
         stage.show();
+    }
+
+    public void drawSellerView() {
+        Stage adminStage = new Stage();
+
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/adminModeView.fxml"));
+
+            Scene contentScene = new Scene(root);
+
+            adminStage.setTitle("OrderingHelper by Znow (Seller Side)");
+            adminStage.setScene(contentScene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        adminStage.show();
+    }
+
+    public void closeStage(Stage stage) {
+        stage.close();
     }
 }
