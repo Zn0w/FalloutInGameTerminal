@@ -21,7 +21,7 @@ public class Main extends Application {
         connector = new DBConnector();
 
         mController = new Controller();
-        mController.startMainWin(primaryStage);
+        mController.runStartWin(primaryStage);
         mController.init();
     }
 

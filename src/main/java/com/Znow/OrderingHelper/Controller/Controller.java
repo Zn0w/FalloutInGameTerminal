@@ -35,7 +35,9 @@ import static com.Znow.OrderingHelper.Model.Model.orders;
  */
 public class Controller {
 
-    private Model cModel;
+    private Stage primaryStage;
+	
+	private Model cModel;
     private View cView;
 
     @FXML
@@ -66,15 +68,31 @@ public class Controller {
         cModel.loadGoods();
         cModel.loadActiveOrders();
     }
+    
+    public void runStartWin(Stage stage) {
+    	cView.drawStartView(stage);
+    	
+    	primaryStage = stage;
+    }
 
-    public void startMainWin(Stage mainStage) {
-        cView.drawClientView(mainStage);
+    public void startMainWin() {
+        cView.drawClientView(primaryStage);
     }
 
     public void startAdminWin() {
-        cView.drawSellerView();
+        cView.drawSellerView(primaryStage);
     }
 
+    // Action handling for startup window
+    
+    public void goAsCustomer() {
+    	System.out.println("Customer");
+    }
+    
+    public void goAsSeller() {
+    	System.out.println("Seller");
+    }
+    
     // Action handling for cashier mode
 
     @FXML

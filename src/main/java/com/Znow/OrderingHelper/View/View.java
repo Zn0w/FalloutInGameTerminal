@@ -12,9 +12,23 @@ import java.io.IOException;
  */
 public class View {
 
-    //private Stage mainStage;
+    public void drawStartView(Stage stage) {
+    	try {
+            Parent root = FXMLLoader.load(getClass().getResource("/startModeView.fxml"));
 
-    public void drawClientView(Stage stage) {
+            Scene contentScene = new Scene(root);
+
+            stage.setTitle("OrderingHelper by Znow");
+            stage.setScene(contentScene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        stage.show();
+    }
+	
+	public void drawClientView(Stage stage) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/cashierModeView.fxml"));
 
@@ -30,22 +44,22 @@ public class View {
         stage.show();
     }
 
-    public void drawSellerView() {
-        Stage adminStage = new Stage();
+    public void drawSellerView(Stage stage) {
+        //Stage adminStage = new Stage();
 
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/adminModeView.fxml"));
 
             Scene contentScene = new Scene(root);
 
-            adminStage.setTitle("OrderingHelper by Znow (Seller Side)");
-            adminStage.setScene(contentScene);
+            stage.setTitle("OrderingHelper by Znow (Seller Side)");
+            stage.setScene(contentScene);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        adminStage.show();
+        stage.show();
     }
 
     public void closeStage(Stage stage) {
