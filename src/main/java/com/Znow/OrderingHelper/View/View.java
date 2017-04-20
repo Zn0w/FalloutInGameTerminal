@@ -11,58 +11,37 @@ import java.io.IOException;
  * Created by User on 28.01.2017.
  */
 public class View {
-
-    public void drawStartView(Stage stage) {
-    	try {
-            Parent root = FXMLLoader.load(getClass().getResource("/startModeView.fxml"));
-
-            Scene contentScene = new Scene(root);
-
-            stage.setTitle("OrderingHelper by Znow");
-            stage.setScene(contentScene);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        stage.show();
-    }
 	
-	public void drawClientView(Stage stage) {
-        try {
+	public void runCustomerView(Stage stage) {
+    	try {
             Parent root = FXMLLoader.load(getClass().getResource("/cashierModeView.fxml"));
-
-            Scene contentScene = new Scene(root);
-
-            stage.setTitle("OrderingHelper by Znow");
-            stage.setScene(contentScene);
-
+            
+            stage.setTitle("OrderingHelper by Zn0w");
+            stage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        stage.show();
+    	
+    	stage.show();
     }
 
-    public void drawSellerView(Stage stage) {
-        //Stage adminStage = new Stage();
-
-        try {
+    public void runSellerView() {
+    	Stage sellerStage = new Stage();
+    	
+    	try {
             Parent root = FXMLLoader.load(getClass().getResource("/adminModeView.fxml"));
-
-            Scene contentScene = new Scene(root);
-
-            stage.setTitle("OrderingHelper by Znow (Seller Side)");
-            stage.setScene(contentScene);
-
+            
+            sellerStage.setTitle("OrderingHelper by Zn0w (seller mode)");
+            sellerStage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        stage.show();
+    	
+    	sellerStage.show();
     }
 
     public void closeStage(Stage stage) {
         stage.close();
     }
+    
 }
