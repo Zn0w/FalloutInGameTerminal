@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
-#include <cctype>
+
+#include "fileManager/fileManager.h"
 
 int option;
 bool inputEntered = false;
@@ -9,6 +10,7 @@ void showMainMenu();
 
 int main() {
     showMainMenu();
+	getFileContents();
 }
 
 void showMainMenu() {
