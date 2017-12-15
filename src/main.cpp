@@ -10,7 +10,7 @@ void showMainMenu();
 
 int main() {
     showMainMenu();
-	getFileContents();
+	getFileContents("resources/items.txt");
 }
 
 void showMainMenu() {

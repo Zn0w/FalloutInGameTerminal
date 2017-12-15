@@ -3,4 +3,4 @@
 #include <fstream>
 #include <string>
 
-void getFileContents();
+void getFileContents(std::string filename);

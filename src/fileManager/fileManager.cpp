@@ -2,6 +2,6 @@
 
 #include <iostream>
 
-void getFileContents() {
+void getFileContents(std::string filename) {
 	std::cout << "Whoo!\n";
 }
