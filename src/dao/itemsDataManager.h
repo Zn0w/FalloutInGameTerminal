@@ -3,7 +3,10 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
+
+#include "../domain/Item.h"
 
 using namespace std;
 
-void getFileContents();
+Item* getItems();

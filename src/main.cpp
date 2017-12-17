@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include "fileManager/fileManager.h"
+#include "dao/itemsDataManager.h"
 #include "domain/Item.h"
 
 using namespace std;
@@ -14,11 +14,7 @@ void showMainMenu();
 int main() {
     showMainMenu();
 
-	string lines[10];
-	getFileContents();
-	Item item1;
-	item1.id = 1;
-	cout << item1.id << endl;
+	Item* items = getItems();
 
 	cin.ignore();
 	cin.get();
