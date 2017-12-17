@@ -1,9 +1,9 @@
 #include "fileManager.h"
 
-void getFileContents(std::string filename) {
+void getFileContents() {
 	ifstream fileReader("resources/itemsData.txt");
 	string line;
-	
+
 	if (fileReader.is_open()) {
 		while (getline(fileReader, line)) {
 			cout << line << endl;
@@ -11,6 +11,6 @@ void getFileContents(std::string filename) {
 	}
 	else
 		cout << "Failed to open an items data file";
-	
+
 	fileReader.close();
 }

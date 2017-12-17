@@ -6,4 +6,4 @@
 
 using namespace std;
 
-void getFileContents(std::string filename);
+void getFileContents();

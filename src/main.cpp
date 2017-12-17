@@ -13,12 +13,15 @@ void showMainMenu();
 
 int main() {
     showMainMenu();
-	
-	string lines[]
-	getFileContents("resources/items.txt");
+
+	string lines[10];
+	getFileContents();
 	Item item1;
 	item1.id = 1;
 	cout << item1.id << endl;
+
+	cin.ignore();
+	cin.get();
 }
 
 void showMainMenu() {
