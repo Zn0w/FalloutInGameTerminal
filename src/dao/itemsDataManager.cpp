@@ -34,5 +34,9 @@ vector<string> getFileContents() {
 }
 
 string* split(string str, char itr) {
-    return NULL;
+    string std_divided[str.size()];
+
+    for (int i; i < str.size(); i++) {
+
+    }
 }
