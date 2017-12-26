@@ -1,15 +1,18 @@
 #include "itemsDataManager.h"
 
-string* split(string str, char itr);
+vector<string> split(string str, char itr);
 vector<string> getFileContents();
 
 Item* getItems() {
     vector<string> itemlines = getFileContents();
     Item items[itemlines.size()];
+    vector<string> result = split("xxfdfhellofworld!flove", 'f');
+    for (string str : result)
+        cout << str << endl;
 
-    for (string itemline : itemlines) {
-        string* components = split(itemline, ';');
-    }
+    //for (string itemline : itemlines) {
+        //string* components = split(itemline, ';');
+    //}
 
     return items;
 }
@@ -33,10 +36,20 @@ vector<string> getFileContents() {
 	return itemlines;
 }
 
-string* split(string str, char itr) {
-    string std_divided[str.size()];
+vector<string> split(string str, char itr) {
+    vector<string> str_divided;
+    string currentStr = "";
 
-    for (int i; i < str.size(); i++) {
-
+    for (int i = 0; i < str.size(); i++) {
+        if (str.at(i) == itr) {
+            str_divided.push_back(currentStr);
+            currentStr = "";
+        }
+        else
+            currentStr += str.at(i);
     }
+
+    str_divided.push_back(currentStr);
+
+    return str_divided;
 }
