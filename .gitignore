@@ -1,6 +1,6 @@
-*.cbp
-*.dll
-obj/
+*.sln
 bin/
-*.depend
-*.layout
+*.user
+*.filters
+.vs/
+*.vcxproj
