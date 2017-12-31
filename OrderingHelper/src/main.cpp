@@ -69,3 +69,30 @@ int getUserCommand()
             cout << "Your input is invalid. (input must be either 1, 2 or 3)\n";
     }
 }
+
+void createOrder()
+{
+	bool order_completed = false;
+	int input;
+
+	cout << "-------------------------------------------------\n";
+	cout << "New order\n";
+	cout << "2. Add new item\n";
+	cout << "3. Remove item\n";
+	cout << "4. Cancel order\n";
+	cout << "-------------------------------------------------\n";
+
+	cout << "Input: ";
+	cin >> input;
+
+	inputEntered = input >= 1 && input <= 3;
+
+	if (cin.fail())
+	{
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		cout << "Your input is invalid. (you only can use integer values for input)\n";
+	}
+	else if (!inputEntered)
+		cout << "Your input is invalid. (input must be either 1, 2 or 3)\n";
+}
