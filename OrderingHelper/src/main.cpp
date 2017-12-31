@@ -4,6 +4,7 @@
 
 #include "dao/itemsDataManaging.h"
 #include "domain/Item.h"
+#include "domain/Order.h"
 
 using namespace std;
 
@@ -75,24 +76,43 @@ void createOrder()
 	bool order_completed = false;
 	int input;
 
-	cout << "-------------------------------------------------\n";
-	cout << "New order\n";
-	cout << "2. Add new item\n";
-	cout << "3. Remove item\n";
-	cout << "4. Cancel order\n";
-	cout << "-------------------------------------------------\n";
+	vector<Item> items = getItems();
 
-	cout << "Input: ";
-	cin >> input;
+	Order new_order;
 
-	inputEntered = input >= 1 && input <= 3;
-
-	if (cin.fail())
+	while (order_completed)
 	{
-		cin.clear();
-		cin.ignore(INT_MAX, '\n');
-		cout << "Your input is invalid. (you only can use integer values for input)\n";
+		cout << "-------------------------------------------------\n";
+		cout << "New order\n";
+		cout << "1. Add new item\n";
+		cout << "2. Remove item\n";
+		cout << "3. Cancel order\n";
+		cout << "-------------------------------------------------\n";
+
+		cout << "Input: ";
+		cin >> input;
+
+		if (input == 1)
+		{
+			int item_id;
+			int amount;
+
+			cout << "Enter items id and preffered amount ";
+			cin >> item_id;
+			cin >> amount;
+			for (Item item : items)
+			{
+				if (item.id == item_id)
+				{
+					new_order.ordered_items.push_back(make_pair(item, amount));
+					break;
+				}
+			}
+
+			cout << amount << " item with id " << item_id << " has been added\n";
+		}
+		else if (input == 2) {
+
+		}
 	}
-	else if (!inputEntered)
-		cout << "Your input is invalid. (input must be either 1, 2 or 3)\n";
 }

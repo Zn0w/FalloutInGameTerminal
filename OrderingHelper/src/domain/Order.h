@@ -9,5 +9,5 @@ struct Order
 {
 	string cashier;
 	string date;
-	vector<string, int> ordered_items;
+	vector<pair<Item, int>> ordered_items;
 };
