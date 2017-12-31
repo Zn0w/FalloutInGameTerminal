@@ -7,14 +7,28 @@
 
 using namespace std;
 
-int option;
-bool inputEntered = false;
-
-void showMainMenu();
+// Returns command, chosen by user
+int getUserCommand();
+// Gets information about new order and saves its information
+void createOrder();
+// Opens administrator tools mode
+void enterAdminMode();
 
 int main()
 {
-    showMainMenu();
+	bool run = true;
+
+	while (run)
+	{
+		int command = getUserCommand();
+		
+		if (command == 1)
+			createOrder();
+		else if (command == 2)
+			enterAdminMode();
+		else
+			run = false;
+	}
 
 	vector<Item> items = getItems();
 	for (Item item : items)
@@ -27,9 +41,12 @@ int main()
 	cin.get();
 }
 
-void showMainMenu()
+int getUserCommand()
 {
-    while (!inputEntered)
+	bool inputEntered = false;
+	int option;
+	
+	while (!inputEntered)
     {
         cout << "-------------------------------------------------\n";
         cout << "1. New order\n";
