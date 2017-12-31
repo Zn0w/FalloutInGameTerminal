@@ -17,6 +17,11 @@ int main()
     showMainMenu();
 
 	vector<Item> items = getItems();
+	for (Item item : items)
+	{
+		cout << "Item " << item.id << ":" << endl;
+		cout << "Properties: " << item.name << " " << item.price << " " << item.measure << endl;
+	}
 
 	cin.ignore();
 	cin.get();
