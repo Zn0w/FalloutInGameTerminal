@@ -25,17 +25,10 @@ int main()
 		
 		if (command == 1)
 			createOrder();
-		else if (command == 2)
-			enterAdminMode();
+		//else if (command == 2)
+			//enterAdminMode();
 		else
 			run = false;
-	}
-
-	vector<Item> items = getItems();
-	for (Item item : items)
-	{
-		cout << "Item " << item.id << ":" << endl;
-		cout << "Properties: " << item.name << " " << item.price << " " << item.measure << endl;
 	}
 
 	cin.ignore();
@@ -53,7 +46,6 @@ int getUserCommand()
         cout << "1. New order\n";
         cout << "2. Log in as administrator\n";
         cout << "3. Exit\n";
-        cout << "-------------------------------------------------\n";
 
         cout << "Input: ";
         cin >> option;
@@ -68,7 +60,11 @@ int getUserCommand()
         }
         else if (!inputEntered)
             cout << "Your input is invalid. (input must be either 1, 2 or 3)\n";
+
+		cout << "-------------------------------------------------\n\n";
     }
+
+	return option;
 }
 
 void createOrder()
@@ -80,14 +76,21 @@ void createOrder()
 
 	Order new_order;
 
-	while (order_completed)
+	while (!order_completed)
 	{
 		cout << "-------------------------------------------------\n";
 		cout << "New order\n";
 		cout << "1. Add new item\n";
 		cout << "2. Remove item\n";
 		cout << "3. Cancel order\n";
-		cout << "-------------------------------------------------\n";
+		cout << endl;
+		cout << "Ordered items:\n";
+		for (int i = 0; i < new_order.ordered_items.size(); i++)
+		{
+			pair<Item, int> element = new_order.ordered_items.at(i);
+			cout << i + 1 << ". " << element.first.name << "(" << element.first.id << ")  ";
+			cout << element.second << " " << element.first.measure << endl;
+		}
 
 		cout << "Input: ";
 		cin >> input;
@@ -97,7 +100,7 @@ void createOrder()
 			int item_id;
 			int amount;
 
-			cout << "Enter items id and preffered amount ";
+			cout << "Enter items id and preffered amount\n";
 			cin >> item_id;
 			cin >> amount;
 			for (Item item : items)
@@ -112,7 +115,14 @@ void createOrder()
 			cout << amount << " item with id " << item_id << " has been added\n";
 		}
 		else if (input == 2) {
-
+			for (int i = 0; i < new_order.ordered_items.size(); i++)
+			{
+				pair<Item, int> element = new_order.ordered_items.at(i);
+				cout << i + 1 << ". " << element.first.name << "(" << element.first.id << ")  ";
+				cout << element.second << " " << element.first.measure << endl;
+			}
 		}
+
+		cout << "-------------------------------------------------\n\n";
 	}
 }
