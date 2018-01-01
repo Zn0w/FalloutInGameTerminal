@@ -76,10 +76,13 @@ void createOrder()
 
 	Order new_order;
 
+	int total = 0;
+
 	while (!order_completed)
 	{
 		cout << "-------------------------------------------------\n";
 		cout << "New order\n";
+		cout << "Commands:\n";
 		cout << "1. Add new item\n";
 		cout << "2. Remove item\n";
 		cout << "3. Cancel order\n";
@@ -89,8 +92,10 @@ void createOrder()
 		{
 			pair<Item, int> element = new_order.ordered_items.at(i);
 			cout << i + 1 << ". " << element.first.name << "(" << element.first.id << ")  ";
-			cout << element.second << " " << element.first.measure << endl;
+			cout << element.second << " " << element.first.measure;
+			cout << " - $" << element.first.price * element.second << endl;
 		}
+		cout << "Total: $" << total << endl;
 
 		cout << "Input: ";
 		cin >> input;
@@ -108,6 +113,7 @@ void createOrder()
 				if (item.id == item_id)
 				{
 					new_order.ordered_items.push_back(make_pair(item, amount));
+					total += item.price * amount;
 					break;
 				}
 			}
@@ -115,12 +121,13 @@ void createOrder()
 			cout << amount << " item with id " << item_id << " has been added\n";
 		}
 		else if (input == 2) {
-			for (int i = 0; i < new_order.ordered_items.size(); i++)
-			{
-				pair<Item, int> element = new_order.ordered_items.at(i);
-				cout << i + 1 << ". " << element.first.name << "(" << element.first.id << ")  ";
-				cout << element.second << " " << element.first.measure << endl;
-			}
+			int element_number;
+			
+			cout << "Which item to delete (put a numbere of order, not items id)\n";
+			cin >> element_number;
+			pair<Item, int> element = new_order.ordered_items.at(element_number - 1);
+			cout << element_number << ". " << element.first.name << "(" << element.first.id << ")  ";
+			cout << element.second << " " << element.first.measure << endl;
 		}
 
 		cout << "-------------------------------------------------\n\n";
