@@ -85,7 +85,8 @@ void createOrder()
 		cout << "Commands:\n";
 		cout << "1. Add new item\n";
 		cout << "2. Remove item\n";
-		cout << "3. Cancel order\n";
+		cout << "3. Complete order\n";
+		cout << "4. Cancel order\n";
 		cout << endl;
 		cout << "Ordered items:\n";
 		for (int i = 0; i < new_order.ordered_items.size(); i++)
@@ -120,9 +121,10 @@ void createOrder()
 
 			cout << amount << " item with id " << item_id << " has been added\n";
 		}
-		else if (input == 2) {
+		else if (input == 2)
+		{
 			int element_number;
-			
+
 			cout << "Which item to delete (put a number of order, not items id)\n";
 			cin >> element_number;
 
@@ -131,7 +133,15 @@ void createOrder()
 
 			new_order.ordered_items.erase(new_order.ordered_items.begin() + (element_number - 1));
 		}
+		else if (input == 3)
+			order_completed = true;
+		else if (input == 4)
+			break;
+
 
 		cout << "-------------------------------------------------\n\n";
 	}
+
+	if (order_completed)
+		// Save order info to file
 }

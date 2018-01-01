@@ -53,7 +53,8 @@ vector<string> split(string str, char itr)
 
     for (int i = 0; i < str.size(); i++)
     {
-        if (str.at(i) == itr) {
+        if (str.at(i) == itr) 
+		{
             str_divided.push_back(currentStr);
             currentStr = "";
         }
