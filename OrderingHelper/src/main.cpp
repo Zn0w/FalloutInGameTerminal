@@ -123,11 +123,13 @@ void createOrder()
 		else if (input == 2) {
 			int element_number;
 			
-			cout << "Which item to delete (put a numbere of order, not items id)\n";
+			cout << "Which item to delete (put a number of order, not items id)\n";
 			cin >> element_number;
+
 			pair<Item, int> element = new_order.ordered_items.at(element_number - 1);
-			cout << element_number << ". " << element.first.name << "(" << element.first.id << ")  ";
-			cout << element.second << " " << element.first.measure << endl;
+			total -= element.first.price * element.second;
+
+			new_order.ordered_items.erase(new_order.ordered_items.begin() + (element_number - 1));
 		}
 
 		cout << "-------------------------------------------------\n\n";
