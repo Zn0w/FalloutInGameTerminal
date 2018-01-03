@@ -143,5 +143,9 @@ void createOrder()
 	}
 
 	if (order_completed)
-		// Save order info to file
+	{
+		// Get cashiers name for new_order.cashier
+		// Get current date for new_order.date
+		// Save order into the file
+	}
 }
