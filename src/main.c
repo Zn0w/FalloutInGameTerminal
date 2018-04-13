@@ -1,15 +1,14 @@
 #include <stdio.h>
 
-#define NEW_ORDER 1
-#define GO_ADMIN 2
-#define QUIT 3
+void show_neworder_menu();
+void show_adminmode_menu();
+
+int option;
 
 int main()
 {
     printf("Welcome to the Ordering Helper! Press enter to continue.");
     getchar();
-
-    int option;
 
     while (1)
     {
@@ -22,24 +21,44 @@ int main()
         printf("Your input: ");
         scanf("%d", &option);
 
-        if (option == NEW_ORDER)
+        switch (option)
         {
-            // Go to creating new order
-        }
-        else if (option == GO_ADMIN)
-        {
-            // Go to switching to the administrator mode
-        }
-        else if (option == QUIT)
-        {
-            // Quit the program
-            return 0;
-        }
-        else
-        {
-            printf("This input is invalid.\n");
+            case 1 :
+                show_neworder_menu();
+                break;
+            case 2 :
+                show_adminmode_menu();
+                break;
+            case 3 :
+                return 0;
+                break;
+            default:
+                printf("This input is invalid.\n");
         }
     }
 
     return 0;
+}
+
+void show_neworder_menu()
+{
+    int order_completed = 0;
+
+    while (!order_completed)
+    {
+        printf("____________________\n____________________\n\n");
+
+        printf("1 - Add new item to order\n");
+        printf("2 - Remove item from order\n");
+        printf("3 - Confirm order\n");
+        printf("4 - Cancel order\n\n");
+
+        printf("Your input: ");
+        scanf("%d", &option);
+    }
+}
+
+void show_adminmode_menu()
+{
+
 }
