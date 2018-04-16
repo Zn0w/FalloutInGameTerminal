@@ -1,5 +1,7 @@
+.vs/
 bin/
 obj/
-*.cbp
-*.layout
-*.depend
+*.sln
+*.filters
+*.user
+*.vcxproj

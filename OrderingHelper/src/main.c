@@ -1,9 +1,15 @@
 #include <stdio.h>
+#include <stdlib.h>
+
+#include "domain/item.h"
 
 void show_neworder_menu();
 void show_adminmode_menu();
 
 int option;
+
+struct Item* items;
+items = malloc(struct[] Item);
 
 int main()
 {
