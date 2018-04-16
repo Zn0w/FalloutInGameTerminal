@@ -1,3 +1,5 @@
+#pragma warning(disable : 4996) // Disable annoying visual studio warnings
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -8,8 +10,8 @@ void show_adminmode_menu();
 
 int option;
 
-struct Item* items;
-items = malloc(struct[] Item);
+//struct Item* items;
+//items = malloc(struct[] Item);
 
 int main()
 {
