@@ -8,4 +8,6 @@ struct Item
     double price;
 };
 
+typedef struct Item Item;
+
 #endif

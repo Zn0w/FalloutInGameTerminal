@@ -10,13 +10,25 @@ void show_adminmode_menu();
 
 int option;
 
-//struct Item* items;
-//items = malloc(struct[] Item);
-
 int main()
 {
     printf("Welcome to the Ordering Helper! Press enter to continue.");
     getchar();
+
+	Item* items = malloc(sizeof(*items) * 10);
+	for (int i = 0; i < 10; i++)
+	{
+		Item item;
+		item.id = i;
+		*(items + i) = item;
+	}
+
+	printf("ID: %d", *(items + 3));
+	
+	Item test_item;
+	printf("Size of array: %d \n", sizeof(*items));
+	printf("Size of item: %d \n", sizeof(test_item));
+	printf("Size of the array: %d", add_element(items, &test_item));
 
     while (1)
     {
