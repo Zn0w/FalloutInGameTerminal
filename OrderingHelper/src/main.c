@@ -15,20 +15,20 @@ int main()
     printf("Welcome to the Ordering Helper! Press enter to continue.");
     getchar();
 
-	Item* items = malloc(sizeof(*items) * 10);
-	for (int i = 0; i < 10; i++)
+	scanf("%d", &option);
+
+	int* a;
+	a = calloc(option, sizeof(int));
+
+	for (int i = 0; i < option; i++)
 	{
-		Item item;
-		item.id = i;
-		*(items + i) = item;
+		*(a + i) = i;
 	}
 
-	printf("ID: %d", *(items + 3));
-	
-	Item test_item;
-	printf("Size of array: %d \n", sizeof(*items));
-	printf("Size of item: %d \n", sizeof(test_item));
-	printf("Size of the array: %d", add_element(items, &test_item));
+	for (int i = 0; i < option; i++)
+	{
+		printf("%d \n", *(a + i));
+	}
 
     while (1)
     {
