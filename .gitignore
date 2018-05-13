@@ -1,7 +1,2 @@
-.vs/
 bin/
 obj/
-*.sln
-*.filters
-*.user
-*.vcxproj
