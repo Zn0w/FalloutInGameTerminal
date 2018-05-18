@@ -2,6 +2,8 @@
 
 #include <windows.h>
 
+#include "element.h"
+
 int current_page = 0;
 
 // current_page = 0 is terminal's welcome screen
@@ -10,12 +12,28 @@ int current_page = 0;
 
 bool running = true;
 
+// Initial screen elements
+Element init_scr_elems[3];
+
 void close_terminal();
 
 void display_welcomeScreen();
+void display_initialScreen();
 
 int main()
 {
+	init_scr_elems[0].type = Menu;
+	init_scr_elems[0].selected = true;
+	init_scr_elems[0].content = "Go user mode";
+
+	init_scr_elems[1].type = Menu;
+	init_scr_elems[1].selected = false;
+	init_scr_elems[1].content = "Go edit mode";
+
+	init_scr_elems[2].type = Text;
+	init_scr_elems[2].selected = false;
+	init_scr_elems[2].content = "See guide";
+	
 	while (running)
 	{
 		// clear the console screen
@@ -24,6 +42,10 @@ int main()
 		if (current_page == 0)
 		{
 			display_welcomeScreen();
+		}
+		else if (current_page == 1)
+		{
+			display_initialScreen();
 		}
 
 		// Pauses the execution until any key is pressed (">nul" means not to display 'Press any key to continue')
@@ -37,7 +59,8 @@ int main()
 		}
 		else if (GetAsyncKeyState(VK_RETURN))
 		{
-			//if (current_page == )
+			if (current_page == 0)
+				current_page = 1;
 		}
 	}
 
@@ -61,4 +84,9 @@ void display_welcomeScreen()
 	std::cout << "RobCo NX-12 terminal, RobCo E-330 terminal, RobCo E-601 terminal, RobCo RX-6550 terminal, RobCo RX-9000 terminal" << std::endl;
 	std::cout << "***" << std::endl;
 	std::cout << "Press enter in order to proceed to the startup menu." << std::endl;
+}
+
+void display_initialScreen()
+{
+
 }
