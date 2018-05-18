@@ -1,3 +1,3 @@
 @echo off
-gcc src/main.c -o bin/terminal
+g++ src/main.cpp -o bin/terminal
 pause

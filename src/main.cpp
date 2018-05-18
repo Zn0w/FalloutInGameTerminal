@@ -1,8 +1,12 @@
-#include <stdio.h>
+#include <iostream>
+
+#include <windows.h>
+
+int current_page = 0;
 
 int main()
 {
-	printf("Welcome to the ZOS!\n");
+	/*printf("Welcome to the ZOS!\n");
 	printf("***\n");
 	printf("ZOS - Znow Operating System is an alternative to the RobCo Industries' Unified Operating System (UOS)\n");
 	printf("***\n");
@@ -12,7 +16,18 @@ int main()
 
 	printf("Press enter in order to proceed to the startup menu.");
 
-	getchar();
+	getchar();*/
+
+	while (true)
+	{
+		// clear the console screen
+		system("cls");
+
+		std::cout << "Test" << std::endl;
+
+		// Pauses the execution until any key is pressed (">nul" means not to display 'Press any key to continue')
+		system("pause>nul");
+	}
 	
 	return 0;
 }
