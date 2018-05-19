@@ -20,6 +20,8 @@ void close_terminal();
 void display_welcomeScreen();
 void display_initialScreen();
 
+HANDLE hConsole; // For changing console text color
+
 int main()
 {
 	init_scr_elems[0].type = Menu;
@@ -33,6 +35,10 @@ int main()
 	init_scr_elems[2].type = Text;
 	init_scr_elems[2].selected = false;
 	init_scr_elems[2].content = "See guide";
+
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	// Set console color to the light green (default)
+	SetConsoleTextAttribute(hConsole, 2);
 	
 	while (running)
 	{
@@ -88,5 +94,15 @@ void display_welcomeScreen()
 
 void display_initialScreen()
 {
-
+	for (int i = 0; i < sizeof(init_scr_elems) / sizeof(Element); i++)
+	{
+		if (init_scr_elems[i].selected)
+		{
+			SetConsoleTextAttribute(hConsole, 3);
+			std::cout << init_scr_elems[i].content << std::endl;
+			SetConsoleTextAttribute(hConsole, 2);
+		}
+		else
+			std::cout << init_scr_elems[i].content << std::endl;
+	}
 }
