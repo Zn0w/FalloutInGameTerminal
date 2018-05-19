@@ -9,5 +9,7 @@ struct Element
 {
 	Type type;
 	bool selected;
+	int previous_page;
+	void* special_info;
 	const char* content;
 };
