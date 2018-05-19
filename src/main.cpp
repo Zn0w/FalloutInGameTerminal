@@ -68,6 +68,36 @@ int main()
 			if (current_page == 0)
 				current_page = 1;
 		}
+		else if (GetAsyncKeyState(VK_UP))
+		{
+			if (current_page == 1)
+			{
+				for (int i = 0; i < sizeof(init_scr_elems) / sizeof(Element); i++)
+				{
+					if (init_scr_elems[i].selected && i > 0)
+					{
+						init_scr_elems[i].selected = false;
+						init_scr_elems[i - 1].selected = true;
+						break;
+					}
+				}
+			}
+		}
+		else if (GetAsyncKeyState(VK_DOWN))
+		{
+			if (current_page == 1)
+			{
+				for (int i = 0; i < sizeof(init_scr_elems) / sizeof(Element); i++)
+				{
+					if (init_scr_elems[i].selected && i < sizeof(init_scr_elems) / sizeof(Element) - 1)
+					{
+						init_scr_elems[i].selected = false;
+						init_scr_elems[i + 1].selected = true;
+						break;
+					}
+				}
+			}
+		}
 	}
 
 	close_terminal();
