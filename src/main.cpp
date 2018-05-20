@@ -63,11 +63,13 @@ int main()
 		{
 			running = false;
 		}
+
 		else if (GetAsyncKeyState(VK_RETURN))
 		{
 			if (current_page == 0)
 				current_page = 1;
 		}
+
 		else if (GetAsyncKeyState(VK_UP))
 		{
 			if (current_page == 1)
@@ -83,6 +85,7 @@ int main()
 				}
 			}
 		}
+
 		else if (GetAsyncKeyState(VK_DOWN))
 		{
 			if (current_page == 1)
@@ -97,6 +100,19 @@ int main()
 					}
 				}
 			}
+		}
+
+		else if (GetAsyncKeyState(VK_LEFT))
+		{
+			if (current_page > 1)
+			{
+				// Get the elements of this page and then go back
+			}
+		}
+
+		else if (GetAsyncKeyState(VK_RIGHT))
+		{
+			
 		}
 	}
 
