@@ -4,7 +4,7 @@
 
 #include "element.h"
 
-int current_page = 0;
+const char* current_page;
 
 // current_page = 0 is terminal's welcome screen
 // current_page = 1 is terminal's initial screen
@@ -24,6 +24,8 @@ HANDLE hConsole; // For changing console text color
 
 int main()
 {
+	current_page = "w";
+
 	init_scr_elems[0].type = Menu;
 	init_scr_elems[0].selected = true;
 	init_scr_elems[0].content = "Go user mode";
@@ -45,11 +47,11 @@ int main()
 		// clear the console screen
 		system("cls");
 
-		if (current_page == 0)
+		if (current_page == "w")
 		{
 			display_welcomeScreen();
 		}
-		else if (current_page == 1)
+		else if (current_page == "0")
 		{
 			display_initialScreen();
 		}
@@ -64,15 +66,9 @@ int main()
 			running = false;
 		}
 
-		else if (GetAsyncKeyState(VK_RETURN))
-		{
-			if (current_page == 0)
-				current_page = 1;
-		}
-
 		else if (GetAsyncKeyState(VK_UP))
 		{
-			if (current_page == 1)
+			if (current_page == "0")
 			{
 				for (int i = 0; i < sizeof(init_scr_elems) / sizeof(Element); i++)
 				{
@@ -88,7 +84,7 @@ int main()
 
 		else if (GetAsyncKeyState(VK_DOWN))
 		{
-			if (current_page == 1)
+			if (current_page == "0")
 			{
 				for (int i = 0; i < sizeof(init_scr_elems) / sizeof(Element); i++)
 				{
@@ -104,15 +100,16 @@ int main()
 
 		else if (GetAsyncKeyState(VK_LEFT))
 		{
-			if (current_page > 1)
-			{
+			//if (current_page > 1)
+			//{
 				// Get the elements of this page and then go back
-			}
+			//}
 		}
 
 		else if (GetAsyncKeyState(VK_RIGHT))
 		{
-			
+			if (current_page == "w")
+				current_page = "0";
 		}
 	}
 
