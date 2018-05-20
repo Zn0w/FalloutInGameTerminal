@@ -144,12 +144,12 @@ void close_terminal()
 void display_welcomeScreen()
 {
 	std::cout << "Welcome to the ZOS!" << std::endl;
-	std::cout << "***" << std::endl;
+	std::cout << std::endl << "***" << std::endl << std::endl;
 	std::cout << "ZOS - Znow Operating System is an alternative to the RobCo Industries' Unified Operating System (UOS)" << std::endl;
-	std::cout << "***" << std::endl;
+	std::cout << std::endl << "***" << std::endl << std::endl;
 	std::cout << "ZOS is officially intended to work on a hardware supplied by RobCo Industries, namely:" << std::endl;
 	std::cout << "RobCo NX-12 terminal, RobCo E-330 terminal, RobCo E-601 terminal, RobCo RX-6550 terminal, RobCo RX-9000 terminal" << std::endl;
-	std::cout << "***" << std::endl;
+	std::cout << std::endl << "***" << std::endl << std::endl;
 	std::cout << "Press RIGHT arrow in order to proceed to the startup menu." << std::endl;
 }
 
@@ -159,7 +159,7 @@ void display_initialScreen()
 	{
 		if (init_scr_elems[i].selected)
 		{
-			SetConsoleTextAttribute(hConsole, 3);
+			SetConsoleTextAttribute(hConsole, 10);
 			std::cout << init_scr_elems[i].content << std::endl;
 			SetConsoleTextAttribute(hConsole, 2);
 		}
@@ -171,14 +171,14 @@ void display_initialScreen()
 void display_guideScreen()
 {
 	std::cout << "This is a ZOS usage guide." << std::endl;
-	std::cout << "***" << std::endl;
+	std::cout << std::endl << "***" << std::endl << std::endl;
 	std::cout << "Navigation:" << std::endl;
 	std::cout << "UP and DOWN arrows - go through the elements" << std::endl;
 	std::cout << "RIGHT arrow - select the element, verify" << std::endl;
-	std::cout << "LEFT arrow - go back, discard" << std::endl;
-	std::cout << "***" << std::endl;
+	std::cout << "LEFT arrow - go back, discard" << std::endl << std::endl;
+	std::cout << std::endl << "***" << std::endl << std::endl;
 	std::cout << "Special commands:" << std::endl;
-	std::cout << "ESCAPE - shut down the terminal" << std::endl;
-	std::cout << "***" << std::endl;
+	std::cout << "ESCAPE - shut down the terminal" << std::endl << std::endl;
+	std::cout << std::endl << "***" << std::endl << std::endl;
 	std::cout << "Press RIGHT arrow in order to proceed to the startup menu." << std::endl;
 }
