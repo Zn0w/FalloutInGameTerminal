@@ -126,6 +126,8 @@ int main()
 				else if (init_scr_elems[2].selected)
 					current_page = "g";
 			}
+			else if (current_page == "g")
+				current_page = "0";
 		}
 	}
 
@@ -148,7 +150,7 @@ void display_welcomeScreen()
 	std::cout << "ZOS is officially intended to work on a hardware supplied by RobCo Industries, namely:" << std::endl;
 	std::cout << "RobCo NX-12 terminal, RobCo E-330 terminal, RobCo E-601 terminal, RobCo RX-6550 terminal, RobCo RX-9000 terminal" << std::endl;
 	std::cout << "***" << std::endl;
-	std::cout << "Press enter in order to proceed to the startup menu." << std::endl;
+	std::cout << "Press RIGHT arrow in order to proceed to the startup menu." << std::endl;
 }
 
 void display_initialScreen()
@@ -168,5 +170,15 @@ void display_initialScreen()
 
 void display_guideScreen()
 {
-	
+	std::cout << "This is a ZOS usage guide." << std::endl;
+	std::cout << "***" << std::endl;
+	std::cout << "Navigation:" << std::endl;
+	std::cout << "UP and DOWN arrows - go through the elements" << std::endl;
+	std::cout << "RIGHT arrow - select the element, verify" << std::endl;
+	std::cout << "LEFT arrow - go back, discard" << std::endl;
+	std::cout << "***" << std::endl;
+	std::cout << "Special commands:" << std::endl;
+	std::cout << "ESCAPE - shut down the terminal" << std::endl;
+	std::cout << "***" << std::endl;
+	std::cout << "Press RIGHT arrow in order to proceed to the startup menu." << std::endl;
 }
