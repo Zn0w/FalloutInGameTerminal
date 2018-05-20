@@ -6,9 +6,11 @@
 
 const char* current_page;
 
-// current_page = 0 is terminal's welcome screen
-// current_page = 1 is terminal's initial screen
-// current_page > 1 is the rest
+// current_page = w is terminal's welcome screen
+// current_page = 0 is terminal's initial screen
+// current_page starts with u is user mode
+// current_page starts with e is edit mode
+// current_page = g is guide page
 
 bool running = true;
 
@@ -19,6 +21,7 @@ void close_terminal();
 
 void display_welcomeScreen();
 void display_initialScreen();
+void display_guideScreen();
 
 HANDLE hConsole; // For changing console text color
 
@@ -54,6 +57,10 @@ int main()
 		else if (current_page == "0")
 		{
 			display_initialScreen();
+		}
+		else if (current_page == "g")
+		{
+			display_guideScreen();
 		}
 
 		// Pauses the execution until any key is pressed (">nul" means not to display 'Press any key to continue')
@@ -110,6 +117,15 @@ int main()
 		{
 			if (current_page == "w")
 				current_page = "0";
+			else if (current_page == "0")
+			{
+				if (init_scr_elems[0].selected)
+					current_page = "u";
+				else if (init_scr_elems[1].selected)
+					current_page = "e";
+				else if (init_scr_elems[2].selected)
+					current_page = "g";
+			}
 		}
 	}
 
@@ -148,4 +164,9 @@ void display_initialScreen()
 		else
 			std::cout << init_scr_elems[i].content << std::endl;
 	}
+}
+
+void display_guideScreen()
+{
+	
 }
