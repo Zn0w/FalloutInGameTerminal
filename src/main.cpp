@@ -4,7 +4,7 @@
 
 #include "element.h"
 
-const char* current_page;
+int current_page;
 
 bool running = true;
 
@@ -21,7 +21,7 @@ HANDLE hConsole; // For changing console text color
 
 int main()
 {
-	current_page = "w";
+	current_page = 0;
 
 	init_scr_elems[0].type = Menu;
 	init_scr_elems[0].selected = true;
@@ -44,15 +44,15 @@ int main()
 		// clear the console screen
 		system("cls");
 
-		if (current_page == "w")
+		if (current_page == 0)
 		{
 			display_welcomeScreen();
 		}
-		else if (current_page == "0")
+		else if (current_page == 1)
 		{
 			display_initialScreen();
 		}
-		else if (current_page == "g")
+		else if (current_page == 2)
 		{
 			display_guideScreen();
 		}
@@ -69,7 +69,7 @@ int main()
 
 		else if (GetAsyncKeyState(VK_UP))
 		{
-			if (current_page == "0")
+			if (current_page == 1)
 			{
 				for (int i = 0; i < sizeof(init_scr_elems) / sizeof(Element); i++)
 				{
@@ -85,7 +85,7 @@ int main()
 
 		else if (GetAsyncKeyState(VK_DOWN))
 		{
-			if (current_page == "0")
+			if (current_page == 1)
 			{
 				for (int i = 0; i < sizeof(init_scr_elems) / sizeof(Element); i++)
 				{
@@ -109,19 +109,19 @@ int main()
 
 		else if (GetAsyncKeyState(VK_RIGHT))
 		{
-			if (current_page == "w")
-				current_page = "0";
-			else if (current_page == "0")
+			if (current_page == 0)
+				current_page = 1;
+			else if (current_page == 1)
 			{
-				if (init_scr_elems[0].selected)
-					current_page = "u";
-				else if (init_scr_elems[1].selected)
-					current_page = "e";
-				else if (init_scr_elems[2].selected)
-					current_page = "g";
+				//if (init_scr_elems[0].selected)
+					//current_page = "u";
+				//else if (init_scr_elems[1].selected)
+					//current_page = "e";
+				/*else*/ if (init_scr_elems[2].selected)
+					current_page = 2;
 			}
-			else if (current_page == "g")
-				current_page = "0";
+			else if (current_page == 2)
+				current_page = 1;
 		}
 	}
 
