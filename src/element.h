@@ -17,8 +17,8 @@ struct Element
 	int current_page;
 	int previous_page;
 	int next_page;
-	const char* special_data;
 	const char* content;
+	const char* special_data;
 };
 
 void create_element(const char* element_data)

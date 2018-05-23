@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 
 #include <windows.h>
 
@@ -8,32 +9,19 @@ int current_page;
 
 bool running = true;
 
-// Initial screen elements
-Element init_scr_elems[3];
+std::map<int, Element[10]> elements;
 
 void close_terminal();
 
 void display_welcomeScreen();
-void display_initialScreen();
-void display_guideScreen();
+//void display_initialScreen();
+//void display_guideScreen();
 
 HANDLE hConsole; // For changing console text color
 
 int main()
 {
 	current_page = 0;
-
-	init_scr_elems[0].type = Menu;
-	init_scr_elems[0].selected = true;
-	init_scr_elems[0].content = "Go user mode";
-
-	init_scr_elems[1].type = Menu;
-	init_scr_elems[1].selected = false;
-	init_scr_elems[1].content = "Go edit mode";
-
-	init_scr_elems[2].type = Text;
-	init_scr_elems[2].selected = false;
-	init_scr_elems[2].content = "See guide";
 
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	// Set console color to the light green (default)
@@ -48,14 +36,14 @@ int main()
 		{
 			display_welcomeScreen();
 		}
-		else if (current_page == 1)
+		/*else if (current_page == 1)
 		{
 			display_initialScreen();
 		}
 		else if (current_page == 2)
 		{
 			display_guideScreen();
-		}
+		}*/
 
 		// Pauses the execution until any key is pressed (">nul" means not to display 'Press any key to continue')
 		system("pause>nul");
@@ -69,7 +57,7 @@ int main()
 
 		else if (GetAsyncKeyState(VK_UP))
 		{
-			if (current_page == 1)
+			/*if (current_page == 1)
 			{
 				for (int i = 0; i < sizeof(init_scr_elems) / sizeof(Element); i++)
 				{
@@ -80,12 +68,12 @@ int main()
 						break;
 					}
 				}
-			}
+			}*/
 		}
 
 		else if (GetAsyncKeyState(VK_DOWN))
 		{
-			if (current_page == 1)
+			/*if (current_page == 1)
 			{
 				for (int i = 0; i < sizeof(init_scr_elems) / sizeof(Element); i++)
 				{
@@ -96,7 +84,7 @@ int main()
 						break;
 					}
 				}
-			}
+			}*/
 		}
 
 		else if (GetAsyncKeyState(VK_LEFT))
@@ -111,17 +99,17 @@ int main()
 		{
 			if (current_page == 0)
 				current_page = 1;
-			else if (current_page == 1)
+			/*else if (current_page == 1)
 			{
-				//if (init_scr_elems[0].selected)
-					//current_page = "u";
-				//else if (init_scr_elems[1].selected)
-					//current_page = "e";
-				/*else*/ if (init_scr_elems[2].selected)
+				if (init_scr_elems[0].selected)
+					current_page = "u";
+				else if (init_scr_elems[1].selected)
+					current_page = "e";
+				else if (init_scr_elems[2].selected)
 					current_page = 2;
 			}
 			else if (current_page == 2)
-				current_page = 1;
+				current_page = 1;*/
 		}
 	}
 
@@ -148,7 +136,7 @@ void display_welcomeScreen()
 	std::cout << "Press RIGHT arrow in order to proceed to the startup menu." << std::endl;
 }
 
-void display_initialScreen()
+/*void display_initialScreen()
 {
 	for (int i = 0; i < sizeof(init_scr_elems) / sizeof(Element); i++)
 	{
@@ -176,4 +164,4 @@ void display_guideScreen()
 	std::cout << "ESCAPE - shut down the terminal" << std::endl << std::endl;
 	std::cout << std::endl << "***" << std::endl << std::endl;
 	std::cout << "Press RIGHT arrow in order to proceed to the startup menu." << std::endl;
-}
+}*/
