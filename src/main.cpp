@@ -4,7 +4,7 @@
 #include <windows.h>
 
 #include "element.h"
-//#include "data_access.h"
+#include "data_access.h"
 
 int current_page;
 
@@ -29,7 +29,7 @@ int main()
 	SetConsoleTextAttribute(hConsole, 2);
 
 	// Load initial screen elements
-	//get_elements(1);
+	get_elements(1);
 	
 	while (running)
 	{
@@ -129,7 +129,6 @@ void close_terminal()
 
 void display_welcomeScreen()
 {
-	create_element("Hello!!!");
 	std::cout << "Welcome to the ZOS!" << std::endl;
 	std::cout << std::endl << "***" << std::endl << std::endl;
 	std::cout << "ZOS - Znow Operating System is an alternative to the RobCo Industries' Unified Operating System (UOS)" << std::endl;

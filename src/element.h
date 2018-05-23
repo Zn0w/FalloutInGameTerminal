@@ -23,7 +23,7 @@ struct Element
 	const char* special_data;
 };
 
-void create_element(const char* element_data)
+static void create_element(const char* element_data)
 {
 	
 }
