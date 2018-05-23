@@ -2,7 +2,8 @@
 
 #include <fstream>
 #include <string>
+#include <iostream>
 
 #include "element.h"
 
-Element* get_elements(int page);
+void get_elements(int page);

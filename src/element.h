@@ -1,3 +1,5 @@
+#pragma once
+
 // The structure of elements data file:
 // 	page_id;type;nextpage_id;content;special_data;
 
@@ -23,6 +25,5 @@ struct Element
 
 void create_element(const char* element_data)
 {
-	//for ()
-	std::cout << "Strlen: " << strlen(element_data);
+	
 }

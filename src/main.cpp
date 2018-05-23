@@ -4,6 +4,7 @@
 #include <windows.h>
 
 #include "element.h"
+//#include "data_access.h"
 
 int current_page;
 
@@ -26,6 +27,9 @@ int main()
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	// Set console color to the light green (default)
 	SetConsoleTextAttribute(hConsole, 2);
+
+	// Load initial screen elements
+	//get_elements(1);
 	
 	while (running)
 	{
