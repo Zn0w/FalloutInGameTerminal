@@ -1,15 +1,28 @@
+// The structure of elements data file:
+// 	page_id;type;selected;nextpage_id;content;special_data;
+
 enum Type
 {
-	Button, // To be implemented later
+	Menu,
+	Read,
+	Button,
 	Text,
-	Menu
+	Action
 };
 
 struct Element
 {
 	Type type;
 	bool selected;
+	int current_page;
 	int previous_page;
-	void* special_info;
+	int next_page;
+	const char* special_data;
 	const char* content;
 };
+
+void create_element(const char* element_data)
+{
+	//for ()
+	std::cout << "Strlen: " << strlen(element_data);
+}

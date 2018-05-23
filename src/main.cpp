@@ -6,12 +6,6 @@
 
 const char* current_page;
 
-// current_page = w is terminal's welcome screen
-// current_page = 0 is terminal's initial screen
-// current_page starts with u is user mode
-// current_page starts with e is edit mode
-// current_page = g is guide page
-
 bool running = true;
 
 // Initial screen elements
@@ -143,6 +137,7 @@ void close_terminal()
 
 void display_welcomeScreen()
 {
+	create_element("Hello!!!");
 	std::cout << "Welcome to the ZOS!" << std::endl;
 	std::cout << std::endl << "***" << std::endl << std::endl;
 	std::cout << "ZOS - Znow Operating System is an alternative to the RobCo Industries' Unified Operating System (UOS)" << std::endl;
