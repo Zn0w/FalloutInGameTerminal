@@ -1,13 +1,13 @@
 // The structure of elements data file:
-// 	page_id;type;selected;nextpage_id;content;special_data;
+// 	page_id;type;nextpage_id;content;special_data;
 
 enum Type
 {
 	Menu,
-	Read,
+	//Read,
 	Button,
 	Text,
-	Action
+	//Action
 };
 
 struct Element
