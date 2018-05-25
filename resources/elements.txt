@@ -1,4 +1,4 @@
 page_id;type;nextpage_id;content;special_data;
-1;m;0;Go user mode;...;
-1;m;0;Go edit mode;...;
-1;t;0;See guide;This is a ZOS usage guide.\n\n***\n\nNavigation:\nUP and DOWN arrows - go through the elements\nRIGHT arrow - select the element, verify\nLEFT arrow - go back, discard\n\n***\n\nSpecial commands:\nESCAPE - shut down the terminal\n\n***\n\nPress RIGHT arrow in order to proceed to the startup menu.\n;
+1;m;Go user mode;...;
+1;m;Go edit mode;...;
+1;t;See guide;This is a ZOS usage guide.\n\n***\n\nNavigation:\nUP and DOWN arrows - go through the elements\nRIGHT arrow - select the element, verify\nLEFT arrow - go back, discard\n\n***\n\nSpecial commands:\nESCAPE - shut down the terminal\n\n***\n\nPress RIGHT arrow in order to proceed to the startup menu.\n;

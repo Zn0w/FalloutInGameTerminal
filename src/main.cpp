@@ -29,7 +29,7 @@ int main()
 	SetConsoleTextAttribute(hConsole, 2);
 
 	// Load initial screen elements
-	get_elements(1);
+	get_elements(1, current_page, &elements);
 	
 	while (running)
 	{
