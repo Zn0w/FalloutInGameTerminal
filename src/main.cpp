@@ -1,5 +1,6 @@
 #include <iostream>
 #include <windows.h>
+#include <stdlib.h>
 
 #include "page.h"
 
@@ -13,7 +14,7 @@ void close_terminal();
 
 void display_welcomeScreen();
 
-void setPage(int id);
+Page setPage(int id);
 
 HANDLE hConsole; // For changing console text color
 
@@ -22,7 +23,7 @@ int main()
 	current_page.id = 0;
 	current_page.previous = 0;
 
-	Element start_element = {Link, true, "", 1};
+	Element start_element = {Link, true, "", "1"};
 
 	current_page.elements.push_back(start_element);
 
@@ -38,7 +39,7 @@ int main()
 		system("cls");
 
 		// Render
-		if (current_page == 0)
+		if (current_page.id == 0)
 			display_welcomeScreen();
 
 		for (Element element : current_page.elements)
@@ -97,7 +98,16 @@ int main()
 		else if (GetAsyncKeyState(VK_RIGHT))
 		{
 			// Find selected element of current page and activate its function
-			if ()
+			for (Element element : current_page.elements)
+			{
+				if (element.selected)
+				{
+					if (element.type == Link)
+					{
+						current_page = setPage(atoi(element.special_data));
+					}
+				}
+			}
 		}
 	}
 
@@ -123,7 +133,9 @@ void display_welcomeScreen()
 	std::cout << "Press RIGHT arrow in order to proceed to the startup menu." << std::endl;
 }
 
-void setPage(int id)
+Page setPage(int id)
 {
-
+	std::cout << "Id: " << id << std::endl;
+	Page page;
+	return page;
 }
