@@ -5,7 +5,7 @@
 
 enum Type
 {
-	Menu,
+	Link,
 	Button,
 	Text
 };
@@ -14,14 +14,6 @@ struct Element
 {
 	Type type;
 	bool selected;
-	//int current_page;
-	int previous_page;
-	//int next_page;
-	const char* content;
+	const char* title;
 	const char* special_data;
 };
-
-static void create_element(const char* element_data)
-{
-	
-}

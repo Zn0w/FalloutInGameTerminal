@@ -2,10 +2,11 @@
 
 void get_elements(int page, int current_page, std::map<int, Element[10]>* elements)
 {
+	Element page_elements[10];
+	
 	std::ifstream file_reader("resources/elements.txt");
-	
 	std::string line;
-	
+	int element_counter = 0;
 	while (std::getline(file_reader, line))
 	{
 		Element element;
@@ -24,6 +25,9 @@ void get_elements(int page, int current_page, std::map<int, Element[10]>* elemen
 				if (counter == 1)
 				{
 					page_id = std::stoi(info);
+
+					if (page_id != page)
+					break;
 				}
 				else if (counter == 2)
 				{
@@ -35,6 +39,10 @@ void get_elements(int page, int current_page, std::map<int, Element[10]>* elemen
 						element.type = Button;
 					// else, handle error
 				}
+				else if (counter == 3)
+					element.content = info.c_str();
+				else if (counter == 4)
+					element.special_data = info.c_str();
 
 				info = "";
 			}
@@ -42,5 +50,13 @@ void get_elements(int page, int current_page, std::map<int, Element[10]>* elemen
 			else
 				info += line.at(i);
 		}
+
+		if (page_id == page && element_counter < 10)
+		{
+			page_elements[element_counter] = element;
+			element_counter++;
+		}
 	}
+
+	elements[page] = *page_elements;
 }
