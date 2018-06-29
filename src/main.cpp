@@ -1,12 +1,11 @@
 #include <iostream>
-#include <map>
-
 #include <windows.h>
 
-#include "element.h"
-#include "data_access.h"
+#include "page.h"
 
-int current_page;
+Page current_page;
+
+std::vector<Page> pages;
 
 bool running = true;
 
@@ -14,11 +13,18 @@ void close_terminal();
 
 void display_welcomeScreen();
 
+void setPage(int id);
+
 HANDLE hConsole; // For changing console text color
 
 int main()
 {
-	current_page = 0;
+	current_page.id = 0;
+	current_page.previous = 0;
+
+	Element start_element = {Link, true, "", 1};
+
+	current_page.elements.push_back(start_element);
 
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	// Set console color to the light green (default)
@@ -32,6 +38,20 @@ int main()
 		system("cls");
 
 		// Render
+		if (current_page == 0)
+			display_welcomeScreen();
+
+		for (Element element : current_page.elements)
+		{
+			if (element.selected)
+			{
+				SetConsoleTextAttribute(hConsole, 10);
+				std::cout << element.title << std::endl;
+				SetConsoleTextAttribute(hConsole, 2);
+			}
+			else
+				std::cout << element.title << std::endl;
+		}
 
 		// Pauses the execution until any key is pressed (">nul" means not to display 'Press any key to continue')
 		system("pause>nul");
@@ -45,22 +65,39 @@ int main()
 
 		else if (GetAsyncKeyState(VK_UP))
 		{
-			
+			for (int i = 0; i < current_page.elements.size(); i++)
+			{
+				if (current_page.elements.at(i).selected && i > 0)
+				{
+					current_page.elements.at(i).selected = false;
+					current_page.elements.at(i - 1).selected = true;
+					break;
+				}
+			}
 		}
 
 		else if (GetAsyncKeyState(VK_DOWN))
 		{
-			
+			for (int i = 0; i < current_page.elements.size(); i++)
+			{
+				if (current_page.elements.at(i).selected && i < current_page.elements.size() - 1)
+				{
+					current_page.elements.at(i).selected = false;
+					current_page.elements.at(i + 1).selected = true;
+					break;
+				}
+			}
 		}
 
 		else if (GetAsyncKeyState(VK_LEFT))
 		{
-			
+			current_page = setPage(current_page.previous);
 		}
 
 		else if (GetAsyncKeyState(VK_RIGHT))
 		{
-			
+			// Find selected element of current page and activate its function
+			if ()
 		}
 	}
 
@@ -84,4 +121,9 @@ void display_welcomeScreen()
 	std::cout << "RobCo NX-12 terminal, RobCo E-330 terminal, RobCo E-601 terminal, RobCo RX-6550 terminal, RobCo RX-9000 terminal" << std::endl;
 	std::cout << std::endl << "***" << std::endl << std::endl;
 	std::cout << "Press RIGHT arrow in order to proceed to the startup menu." << std::endl;
+}
+
+void setPage(int id)
+{
+
 }
