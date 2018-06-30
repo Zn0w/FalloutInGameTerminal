@@ -7,7 +7,8 @@ enum Type
 {
 	Link,
 	Button,
-	Text
+	Text,
+	Notify
 };
 
 struct Element

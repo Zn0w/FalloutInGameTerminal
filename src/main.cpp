@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 #include "page.h"
+#include "get_data.h"
 
 Page current_page;
 
@@ -23,7 +24,7 @@ int main()
 	current_page.id = 0;
 	current_page.previous = 0;
 
-	Element start_element = {Link, true, "", "1"};
+	Element start_element = {Link, true, "Go", "1"};
 
 	current_page.elements.push_back(start_element);
 
@@ -104,7 +105,9 @@ int main()
 				{
 					if (element.type == Link)
 					{
+						int prev_id = current_page.id;
 						current_page = setPage(atoi(element.special_data));
+						current_page.previous = prev_id;
 					}
 				}
 			}
@@ -135,7 +138,13 @@ void display_welcomeScreen()
 
 Page setPage(int id)
 {
-	std::cout << "Id: " << id << std::endl;
-	Page page;
-	return page;
+	for (Page page : pages)
+	{
+		if (page.id == id)
+		{
+			return page;
+		}
+	}
+	
+	return getPage(id);
 }
