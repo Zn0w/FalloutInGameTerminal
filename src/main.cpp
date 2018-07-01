@@ -106,7 +106,7 @@ int main()
 					if (element.type == Link)
 					{
 						int prev_id = current_page.id;
-						current_page = setPage(atoi(element.special_data));
+						current_page = setPage(stoi(element.special_data));
 						current_page.previous = prev_id;
 					}
 				}

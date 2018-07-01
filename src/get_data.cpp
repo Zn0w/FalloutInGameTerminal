@@ -2,7 +2,8 @@
 
 Page getPage(int id)
 {
-	std::string path = "resources/pages/page" + std::to_string(id) + ".txt";
+	//std::string path = "resources/pages/page" + std::to_string(id) + ".txt";
+	std::string path = "resources/pages/page.txt";
 	std::ifstream file_reader(path);
 	
 	if (!file_reader)
@@ -51,8 +52,8 @@ Page getPage(int id)
 			element_type = Text;
 		else if (element[0] == "notify")
 			element_type = Notify;
-
-		Element elem = {element_type, stoi(element[1]), element[2].c_str(), element[3].c_str()};
+		
+		Element elem = {element_type, stoi(element[1]), element[2], element[3]};
 		elements.push_back(elem);
 	}
 
