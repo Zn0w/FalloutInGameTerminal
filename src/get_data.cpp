@@ -2,8 +2,7 @@
 
 Page getPage(int id)
 {
-	//std::string path = "resources/pages/page" + std::to_string(id) + ".txt";
-	std::string path = "resources/pages/page.txt";
+	std::string path = "resources/pages/page" + std::to_string(id) + ".txt";
 	std::ifstream file_reader(path);
 	
 	if (!file_reader)
