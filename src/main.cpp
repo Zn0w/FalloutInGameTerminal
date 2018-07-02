@@ -109,6 +109,14 @@ int main()
 						current_page = setPage(stoi(element.special_data));
 						current_page.previous = prev_id;
 					}
+
+					else if (element.type == Text)
+					{
+						system("cls");
+						std::cout << "Reading now: * " << element.title << " *" << std::endl;
+						std::cout << element.special_data << std::endl;
+						system("pause");
+					}
 				}
 			}
 		}
