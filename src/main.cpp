@@ -125,6 +125,26 @@ int main()
 				}
 			}
 		}
+
+		else if (GetAsyncKeyState(VK_A))
+		{
+			// Go to "Create new element" page (form)
+		}
+
+		else if (GetAsyncKeyState(VK_S))
+		{
+			// Go to "Delete selected element" page (yes / no)
+		}
+
+		else if (GetAsyncKeyState(VK_D))
+		{
+			// Go to "Create new page" page (yes / or)
+		}
+
+		else if (GetAsyncKeyState(VK_F))
+		{
+			// Go to "Delete current page" page (yes / no)
+		}
 	}
 
 	close_terminal();
