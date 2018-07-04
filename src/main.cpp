@@ -4,6 +4,7 @@
 
 #include "page.h"
 #include "get_data.h"
+#include "set_data.h"
 
 Page current_page;
 
@@ -126,22 +127,57 @@ int main()
 			}
 		}
 
-		else if (GetAsyncKeyState(VK_A))
+		else if (GetAsyncKeyState(0x41)) // A key
 		{
 			// Go to "Create new element" page (form)
+			char answer;
+			std::cout << "Do you want to create new element on this page (y / n) ?";
+			std::cin >> answer;
+
+			if (answer == 'y')
+			{
+				bool valid;
+				
+				Type elem_type;
+				std::string s_type, title, special_data;
+				
+				std::cout << std::endl << "Type: ";
+				std::cin >> s_type;
+				std::cout << std::endl << "Title: ";
+				std::cin >> title;
+				std::cout << std::endl << "Special info: ";
+				std::cin >> special_data;
+
+				valid = title != "" && special_data != "";
+
+				if (s_type == "link")
+					elem_type = Link;
+				else if (s_type == "text")
+					elem_type = Text;
+				else if (s_type == "button")
+					elem_type = Button;
+				else
+					valid = false;
+
+				if (valid)
+				{
+					Element new_element = {elem_type, false, title, special_data};
+					createElement(current_page, new_element);
+				}
+			}
 		}
 
-		else if (GetAsyncKeyState(VK_S))
+		else if (GetAsyncKeyState(0x53)) // S key
 		{
 			// Go to "Delete selected element" page (yes / no)
 		}
 
-		else if (GetAsyncKeyState(VK_D))
+		else if (GetAsyncKeyState(0x44)) // D key
 		{
 			// Go to "Create new page" page (yes / or)
 		}
 
-		else if (GetAsyncKeyState(VK_F))
+		else if (GetAsyncKeyState(0x46)) // F key
 		{
 			// Go to "Delete current page" page (yes / no)
 		}
