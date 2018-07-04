@@ -117,6 +117,11 @@ int main()
 						std::cout << element.special_data << std::endl;
 						system("pause");
 					}
+
+					else if (element.type == Button)
+					{
+						// Handle running scipt output
+					}
 				}
 			}
 		}
