@@ -1,3 +1,2 @@
-link;1;This is test 1;0;
-link;0;This is test 2;0;
-text;0;This is text test;This is a sample text to test if the text element support is working.;
+link;0;Go to the first user-created page;2;
+text;1;User guide;There will be a guide;
