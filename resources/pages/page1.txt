@@ -1,2 +1,2 @@
 link;0;Go to the first user-created page;2;
-text;1;User guide;There will be a guide;
+text;1;User guide;UP and DOWN for navigation through elements of the page. LEFT - to go to the previous page. RIGHT - to activate the selected element of the page.;
