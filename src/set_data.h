@@ -1,7 +1,9 @@
 #pragma once
 
-#include "page.h"
+#include <fstream>
+#include <iostream>
+#include <string>
 
-#include <iostream> // only temporary for debugging
+#include "page.h"
 
 void createElement(Page page, Element element);

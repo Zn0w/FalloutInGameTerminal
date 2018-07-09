@@ -164,6 +164,10 @@ int main()
 					Element new_element = {elem_type, false, title, special_data};
 					createElement(current_page, new_element);
 				}
+				else
+				{
+					std::cout << "Failed to create an element" << std::endl;
+				}
 			}
 		}
 
