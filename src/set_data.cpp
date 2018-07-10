@@ -56,6 +56,11 @@ void deleteElement(Page* page, int element_id)
 	//vec.erase(vec.begin() + 1);
 	page->elements.erase(page->elements.begin() + element_id);
 
+	if (element_id > 0)
+		page->elements.at(element_id - 1).selected = true;
+	else
+		page->elements.at(element_id + 1).selected = true;
+
 	for (Element element : page->elements)
 	{
 		char selected_c;
