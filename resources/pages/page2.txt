@@ -1,5 +1,4 @@
-link;1;Crew journals;3;
+link;0;Crew journals;3;
 button;0;Switch the turret on;../scripts/turret/turret_on.c;
 button;0;Switch the turret off;../scripts/turret/turret_off.c;
 button;0;Show the turret's state;../scripts/turret/turres_stats.c;
-text;0;TestTextElement;ThisIsATesting...;
