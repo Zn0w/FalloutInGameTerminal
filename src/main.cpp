@@ -174,6 +174,21 @@ int main()
 		else if (GetAsyncKeyState(0x53)) // S key
 		{
 			// Go to "Delete selected element" page (yes / no)
+			char answer;
+			std::cout << "Do you want to delete selected element on this page (y / n) ?";
+			std::cin >> answer;
+
+			if (answer == 'y')
+			{
+				for (int i = 0; i < current_page.elements.size(); i++)
+				{
+					if (current_page.elements.at(i).selected)
+					{
+						deleteElement(current_page, i);
+						break;
+					}
+				}
+			}
 		}
 
 		else if (GetAsyncKeyState(0x44)) // D key

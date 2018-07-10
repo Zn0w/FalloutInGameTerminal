@@ -33,3 +33,12 @@ void createElement(Page page, Element element)
 	file_writer << elem_type_s << ";" << selected_c << ";" << element.title << ";" << element.special_data << ";\n";
 	file_writer.close();
 }
+
+void deleteElement(Page page, int element_id)
+{
+	Element element = page.elements.at(element_id);
+	std::cout << "Title: " << element.title << std::endl;
+	std::cout << "Special data: " << element.special_data << std::endl;
+	std::cout << "--------------------------------------------------" << std::endl;
+	system("pause");
+}
