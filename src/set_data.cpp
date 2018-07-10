@@ -32,6 +32,9 @@ void createElement(Page page, Element element)
 
 	file_writer << elem_type_s << ";" << selected_c << ";" << element.title << ";" << element.special_data << ";\n";
 	file_writer.close();
+
+	element.selected = selected_c == '1';
+	page.elements.push_back(element);
 }
 
 void deleteElement(Page page, int element_id)
