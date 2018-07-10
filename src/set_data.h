@@ -8,4 +8,4 @@
 
 void createElement(Page page, Element element);
 
-void deleteElement(Page page, int element_id);
+void deleteElement(Page* page, int element_id);

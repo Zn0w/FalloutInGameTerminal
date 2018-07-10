@@ -184,7 +184,7 @@ int main()
 				{
 					if (current_page.elements.at(i).selected)
 					{
-						deleteElement(current_page, i);
+						deleteElement(&current_page, i);
 						break;
 					}
 				}
