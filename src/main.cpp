@@ -130,11 +130,11 @@ int main()
 		else if (GetAsyncKeyState(0x41)) // A key
 		{
 			// Go to "Create new element" page (form)
-			char answer;
+			std::string answer;
 			std::cout << "Do you want to create new element on this page (y / n) ?";
-			std::cin >> answer;
+			std::getline(std::cin, answer);
 
-			if (answer == 'y')
+			if (answer == "y")
 			{
 				bool valid;
 				
@@ -142,11 +142,11 @@ int main()
 				std::string s_type, title, special_data;
 				
 				std::cout << std::endl << "Type: ";
-				std::cin >> s_type;
+				std::getline(std::cin, s_type);
 				std::cout << std::endl << "Title: ";
-				std::cin >> title;
+				std::getline(std::cin, title);
 				std::cout << std::endl << "Special info: ";
-				std::cin >> special_data;
+				std::getline(std::cin, special_data);
 
 				valid = title != "" && special_data != "";
 

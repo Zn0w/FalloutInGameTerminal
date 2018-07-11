@@ -1,3 +1,4 @@
 text;1;01/07/2018;The day we first came to the bunker.;
 text;0;02/07/2018;We heard a dozen of unicorns outside the bunker. Maybe the wasteland isn't that bad.;
 text;0;04/07/2018;We are low on food now. I'm going to go outside.;
+text;0;11/07/2018;This is my latest entry. I created this entry using newly added base feature of creating elements via the terminal window. :);
