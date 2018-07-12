@@ -61,3 +61,20 @@ Page getPage(int id)
 	Page page = {id, 0, elements};
 	return page;
 }
+
+int getPageCounter()
+{
+	std::string path = "resources/pages/page_counter.txt";
+	std::ifstream file_reader(path);
+	std::string count_s;
+
+	if (!file_reader || !std::getline(file_reader, count_s))
+	{
+		return -1;
+	}
+	else
+	{
+		file_reader.close();
+		return stoi(count_s);
+	}
+}

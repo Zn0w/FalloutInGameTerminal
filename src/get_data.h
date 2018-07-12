@@ -6,6 +6,6 @@
 
 #include "page.h"
 
-//static bool pageExists(int id);
-
 Page getPage(int id);
+
+int getPageCounter();
