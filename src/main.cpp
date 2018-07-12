@@ -167,6 +167,7 @@ int main()
 				else
 				{
 					std::cout << "Failed to create an element" << std::endl;
+					system("pause");
 				}
 			}
 		}
@@ -194,6 +195,33 @@ int main()
 		else if (GetAsyncKeyState(0x44)) // D key
 		{
 			// Go to "Create new page" page (yes / or)
+			std::string answer;
+			std::cout << "Do you want to create new page? You will need to create a link on the current page to the page you want yo create. Proceed (y / n) ?";
+			std::getline(std::cin, answer);
+
+			if (answer == "y")
+			{
+				bool valid;
+				
+				Element page_link;
+				page_link.type = Link;
+				page_link.selected = false;
+				
+				std::cout << std::endl << "Link's Title: ";
+				std::getline(std::cin, page_link.title);
+
+				valid = link.title != "";
+
+				if (valid)
+				{
+					createPage(&page_link, current_page.id);
+				}
+				else
+				{
+					std::cout << "Failed to create a page" << std::endl;
+					system("pause");
+				}
+			}
 		}
 
 		else if (GetAsyncKeyState(0x46)) // F key

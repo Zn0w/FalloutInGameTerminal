@@ -82,3 +82,28 @@ void deleteElement(Page* page, int element_id)
 
 	file_writer.close();
 }
+
+void createPage(Element* link, int previous)
+{
+	int page_count = getPageCounter();
+	if (page_count < 0)
+	{
+		std::cout << "Failed to create a new page" << std::endl;
+		system("pause");
+	}
+	else
+	{
+		std::string path = "resources/pages/page" + std::to_string(page_count++) + ".txt";
+		std::ofstream file_writer(path);
+
+		if (!file_writer)
+		{
+			std::cout << "Failed to create a new page" << std::endl;
+			system("pause");
+
+			return;
+		}
+
+		
+	}
+}
